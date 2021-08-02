@@ -1,0 +1,26 @@
+from tkinter import *
+import  win32com.client as win32
+
+janela = Tk()
+janela.title('JOKENPO') #edita o título da janela a ser exibido
+
+nomeJogo = Label(janela, text='JOKENPÔ', bg = 'lightgreen')
+nomeJogo.grid(column=1, row=0)
+
+texto_Orientacao = Label(janela, text='Escolha sua jogada:')
+texto_Orientacao.grid(column=1, row=1, padx=10, pady=10)
+
+pedra = Button(janela, text='PEDRA', bg= 'lightblue') #falta colocar parametro command  nos botões
+pedra.grid(column=0, row=2, padx=10, pady=10)
+
+papel = Button(janela, text='PAPEL')
+papel.grid(column=1, row=2, padx=10, pady=10)
+
+tesoura = Button(janela, text='TESOURA')
+tesoura.grid(column=2, row=2, padx=10, pady=10)
+
+resultado = Label(janela , text='O RESULTADO APARECERÁ AQUI')# texto onde aparece resultado do jogo
+resultado.grid(column=1, row=3, padx=10, pady=10)
+
+#sempre manter como última linha  do código
+janela.mainloop()
