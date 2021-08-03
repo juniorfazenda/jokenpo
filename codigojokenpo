@@ -1,50 +1,64 @@
 #JOKENPO
 from random import randint
-from time import sleep
-import emoji
-print(emoji.emojize(':crystal_ball:, :page_facing_up:, :scissors:'))
-#itens = ('PEDRA', 'PAPEL', 'TESOURA')
-itens = (':crystal_ball:', ':page_facing_up:', ':scissors:')
-computador = randint(0, 2)
-print('''Suas opções:
-[ 0 ] PEDRA
-[ 1 ] PAPEL
-[ 2 ] TESOURA''')
-jogador = int(input('Qual a sua Jogada? '))
-print('JO')
-sleep(1)
-print('KEN')
-sleep(1)
-print('PO!')
-sleep(1)
-print('-='* 11)
-print('O computador escolheu {}'.format(emoji.emojize(itens[computador])))
-print('Você escolheu {}'.format(emoji.emojize(itens[jogador])))
-print('-='* 11)
-if computador == 0: #computador jogou pedra
-    if jogador == 0:
-        print('EMPATE!')
-    elif jogador == 1:
-        print('Você venceu!')
-    elif jogador == 2:
-        print('Você perdeu!')
-    else:
-        print('Jogada Inválida!')
-elif computador == 1: #computador jogou papel
-    if jogador == 0:
-        print('Você perdeu!')
-    elif jogador == 1:
-        print('EMPATE!')
-    elif jogador == 2:
-        print('Você venceu!')
-    else:
-        print('Jogada Inválida!')
-elif computador == 2: #computador jogou tesoura
-    if jogador == 0:
-        print('Você venceu!')
-    elif jogador == 1:
-        print('Você perdeu!')
-    elif jogador == 2:
-        print('EMPATE!')
-    else:
-        print('Jogada Inválida!')
+def pedra():
+
+    itens = ('PEDRA', 'PAPEL', 'TESOURA')
+    computador = randint(0, 2)
+    if computador == 0:  # computador jogou pedra
+        resultado = 'O Computador escolheu PEDRA. EMPATOU'
+    elif computador == 1: #computador jogou papel
+        resultado = 'O Computador escolheu PAPEL. Você PERDEU!'
+    elif computador == 2: #computador jogou tesoura
+        resultado = 'O Computador escolheu TESOURA. Você GANHOU!'
+    resultado_final['text'] = resultado
+
+def papel():
+    itens = ('PEDRA', 'PAPEL', 'TESOURA')
+    computador = randint(0, 2)
+    if computador == 0:  # computador jogou pedra
+        resultado = 'O Computador escolheu PEDRA. Você GANHOU!'
+    elif computador == 1:  # computador jogou papel
+        resultado = 'O Computador escolheu PAPEL. EMPATOU'
+    elif computador == 2:  # computador jogou tesoura
+        resultado = 'O Computador escolheu TESOURA. Você PERDEU!'
+    resultado_final['text'] = resultado
+
+def tesoura():
+    itens = ('PEDRA', 'PAPEL', 'TESOURA')
+    computador = randint(0, 2)
+    if computador == 0:  # computador jogou pedra
+        resultado = 'O Computador escolheu PEDRA. Você PERDEU!'
+    elif computador == 1:  # computador jogou papel
+        resultado = 'O Computador escolheu PAPEL. Você GANHOU!'
+    elif computador == 2:  # computador jogou tesoura
+        resultado = 'O Computador escolheu TESOURA. EMPATOU'
+    resultado_final['text'] = resultado
+
+#Código para implementar janela
+
+from tkinter import *
+#import  win32com.client as win32
+
+janela = Tk()
+janela.title('JOKENPO') #edita o título da janela a ser exibido
+
+nomeJogo = Label(janela, text='JOKENPÔ', bg = 'lightgreen')
+nomeJogo.grid(column=1, row=0)
+
+texto_Orientacao = Label(janela, text='Escolha sua jogada:')
+texto_Orientacao.grid(column=1, row=1, padx=10, pady=10)
+
+pedra = Button(janela, text='PEDRA', bg= 'lightblue', command=pedra) #falta colocar parametro command  nos botões
+pedra.grid(column=0, row=2, padx=10, pady=10)
+
+papel = Button(janela, text='PAPEL', command=papel)
+papel.grid(column=1, row=2, padx=10, pady=10)
+
+tesoura = Button(janela, text='TESOURA', command=tesoura)
+tesoura.grid(column=2, row=2, padx=10, pady=10)
+
+resultado_final = Label(janela, text='')# texto onde aparece resultado do jogo
+resultado_final.grid(column=1, row=3, padx=10, pady=10)
+
+#sempre manter como última linha  do código
+janela.mainloop()
